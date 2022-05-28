@@ -1,4 +1,4 @@
-module comp
+module compctl
     #(parameter P_WIDTH=32) (
         input   [P_WIDTH-1:0] a,
         input   [P_WIDTH-1:0] b,

@@ -1,0 +1,20 @@
+ 10      9  8    7    6    5    4   3       0
+| SO[1:0] | SW | WB | WA | JC | JU | AD[3:0] |
+
+<-----DATAPATH CTRL-----> <---CONTROL_CTRL-->
+
+
+#   |   Description
+-----------------------------------------
+10  |   Select operation bit [1]
+9   |   Select operation bit [0]
+8   |   Swap operand order
+7   |   Write enable for reg B
+6   |   Write enable for reg A
+5   |   Conditional jump
+4   |   Unconditional jump
+3   |   Instruction address bit [3] 
+2   |   Instruction address bit [2] 
+1   |   Instruction address bit [1] 
+0   |   Instruction address bit [0] 
+ 
