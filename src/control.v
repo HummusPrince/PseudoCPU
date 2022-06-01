@@ -4,7 +4,8 @@ module control
     parameter P_NUM_C_CTRLBITS = 2) (
         input cres,
         input rst,
-        output [P_NUM_D_CTRLBITS-1:0] dp_ctrl)
+        input clk,
+        output [P_NUM_D_CTRLBITS-1:0] dp_ctrl);
     
     //Local parameters
     localparam LP_WORDWIDTH = P_LOG_MEMSIZE+P_NUM_D_CTRLBITS+P_NUM_C_CTRLBITS;
