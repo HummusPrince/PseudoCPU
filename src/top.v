@@ -3,7 +3,8 @@ module top
     parameter P_LOG_MEMSIZE = 4,
     parameter P_NUM_D_CTRLBITS = 5,
     parameter P_NUM_C_CTRLBITS = 2) (
-        input rst);
+        input rst
+        input clk);
     
     reg [P_WIDTH-1:0] a, b;
 
@@ -40,6 +41,7 @@ module top
         ctrl (
             .cres(c_res),
             .rst(rst),
+            .clk(clk),
             .pd_ctrl({op, sw, wb, wa}));
 
     always @(posedge clk, posedge rst) begin
