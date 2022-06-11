@@ -1,8 +1,8 @@
 module switch
     #(parameter P_WIDTH=32) (
         input   [P_WIDTH-1:0] ain, bin,
-        output  [P_WIDTH-1:0] aout, bout,
-        input sel)
+        output reg  [P_WIDTH-1:0] aout, bout,
+        input sel);
 
     always @(sel, ain, bin) begin
         case(sel)

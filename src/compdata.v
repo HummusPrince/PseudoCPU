@@ -1,8 +1,8 @@
 module compdata
     #(parameter P_WIDTH=32) (
         input   [P_WIDTH-1:0] a,b,
-        output  [P_WIDTH-1:0] dres,
-        input [2-1:0] op)
+        output reg [P_WIDTH-1:0] dres,
+        input [2-1:0] op);
 
     always @(op, a, b) begin
         case(op)
