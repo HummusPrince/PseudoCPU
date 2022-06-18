@@ -5,6 +5,7 @@ module control
         input cres,
         input rst,
         input clk,
+        input en,
         output [P_NUM_D_CTRLBITS-1:0] dp_ctrl);
     
     //Local parameters
@@ -30,7 +31,7 @@ module control
     always @(posedge clk, posedge rst) begin
         if(rst) addr <= 0;
         else begin
-            addr <= ((cres&jc)|ju) ? j_addr : addr+1;
+            addr <= en ? (((cres&jc)|ju) ? j_addr : addr+1) : addr;
         end
     end
 endmodule

@@ -4,7 +4,8 @@ module top
     parameter P_NUM_D_CTRLBITS = 5,
     parameter P_NUM_C_CTRLBITS = 2) (
         input rst,
-        input clk);
+        input clk,
+        input en);
     
     reg [P_WIDTH-1:0] a, b;
 
@@ -42,6 +43,7 @@ module top
             .cres(c_res),
             .rst(rst),
             .clk(clk),
+            .en(en),
             .dp_ctrl({op, sw, wb, wa}));
 
     always @(posedge clk, posedge rst) begin
@@ -50,8 +52,10 @@ module top
             b <= 0;
         end
         else begin
-            if (wa) a <= d_res;
-            if (wb) b <= d_res;
+            if(en) begin
+                if (wa) a <= d_res;
+                if (wb) b <= d_res;
+            end
         end
     end
 endmodule
