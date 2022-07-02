@@ -22,15 +22,19 @@ sim.vvp:
 	${VC} ${VCFLAGS} -o ${FILE}.vvp ${VSRC} 
 
 .PHONY: sim
-sim: ${FILE}.vvp
+sim: ${FILE}.vvp test_vec
 
 .PHONY: run
 run: ${FILE}.vcd
 
 .PHONY: view
 view: run
-	${VIEW} ${FILE}.vcd
+	${VIEW} ${FILE}.vcd sim/values.gtkw
+
+.PHONY: test_vec
+test_vec:
+	(cd sim/vectors && python csv2vecs.py)
 
 .PHONY: clean
 clean:
-	rm *.vvp *.vcd
+	rm *.vvp *.vcd sim/vectors/?.b
