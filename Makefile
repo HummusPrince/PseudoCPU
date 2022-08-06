@@ -37,4 +37,8 @@ test_vec:
 
 .PHONY: clean
 clean:
+	rm *.vvp *.vcd
+
+.PHONY: cleanall
+cleanall:
 	rm *.vvp *.vcd sim/vectors/?.b
