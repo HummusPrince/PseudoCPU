@@ -345,4 +345,6 @@ That way, the hardware can be developed only once to run all types of logic, who
 Let's make a complete GCD computer. The Control and Datapath blocks are already implemented for you.
 Integrate both parts together and compose the machine code that runs Stein's Algorithm (use the pseudo-assembly appearing earlier in this document). Simulate the whole system to prove that it works.
 
+(Tip: for working the machine code, try 'vim -S machine_code.vim').
+
 Good luck :)

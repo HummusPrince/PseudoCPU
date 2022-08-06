@@ -42,7 +42,7 @@ module tb;
     always #5 clk = !clk;
 
     initial begin
-        $readmemb("./src/bin/eq_zero_optimized.b", i_top.ctrl.imem);
+        $readmemb("./src/bin/stein.b", i_top.ctrl.imem);
         $readmemb("./sim/vectors/a.b", a);
         $readmemb("./sim/vectors/b.b", b);
         $readmemb("./sim/vectors/g.b", g);

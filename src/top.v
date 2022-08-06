@@ -10,8 +10,6 @@ module top
     reg [P_WIDTH-1:0] a, b;
 
     wire [P_WIDTH-1:0] a_sw, b_sw, d_res;
-    wire wa, wb, sw, c_res;
-    wire [2-1:0] op;
 
     switch #(.P_WIDTH(P_WIDTH))
         i_switch (
@@ -26,25 +24,25 @@ module top
             .a(a_sw),
             .b(b_sw),
             .dres(d_res),
-            .op(op));
+            .op());
 
     compctl #(.P_WIDTH(P_WIDTH))
         c_path (
             .a(a_sw),
             .b(b_sw),
-            .cres(c_res),
-            .op(op));
+            .cres(),
+            .op());
 
 
     control #(.P_LOG_MEMSIZE(P_LOG_MEMSIZE),
             .P_NUM_D_CTRLBITS(P_NUM_D_CTRLBITS),
             .P_NUM_C_CTRLBITS(P_NUM_C_CTRLBITS))
         ctrl (
-            .cres(c_res),
+            .cres(),
             .rst(rst),
             .clk(clk),
             .en(en),
-            .dp_ctrl({op, sw, wb, wa}));
+            .dp_ctrl());
 
     always @(posedge clk, posedge rst) begin
         if(rst) begin
