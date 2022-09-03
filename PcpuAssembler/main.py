@@ -7,6 +7,8 @@ parser.add_argument('output_file', metavar='output_file', type=str, help="output
 
 commands = [ 'JMP', 'JEQ', 'JGE', 'JBZ', 'SUB', 'SHF']
 registers = ['A', 'B']
+
+MEMSIZE    = 16
     
 SO_EQ      = 0
 SO_GE      = 1
@@ -19,6 +21,12 @@ class InvalidCommand(Exception):
     def __init__(self, command):
         self.command = command
         self.message = "{} is not a Valid command. Valid commands: {}".format(self.command, commands)
+        super().__init__(self.message)
+
+class MemoryOverflow(Exception):
+    def __init__(self, memory_used):
+        self.memory_used = memory_used
+        self.message = "Program used {} instructions while memroy support only {} instructions".format(self.memory_used, MEMSIZE)
         super().__init__(self.message)
 
 def construct_command(so=0, sw=0, wb=0, wa=0, jc=0, ju=0, ad=0):
@@ -100,14 +108,18 @@ def firstpass(input_file):
             else :              # command line
                 address += 1
 
-    return labels
+    return labels, address
         
 
 def PcpuAssmbler_main():
     args = parser.parse_args()
     print("Starting first pass")
-    labels = firstpass(args.input_file)
+    labels, inst_count = firstpass(args.input_file)
     print("Found {} labels".format(len(labels)))
+    if inst_count > MEMSIZE:
+        raise MemoryOverflow(inst_count)
+    else:
+        print("Using {} out of {} instruction space".format(inst_count, MEMSIZE))
     print("Starting second pass")
     binfile = secondpass(args.input_file, labels)
     print("Generated bin file:")
