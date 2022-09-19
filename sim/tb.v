@@ -19,6 +19,8 @@ module tb;
 
     task compute_gcd(input [32 - 1 : 0] a, b, g);
         begin
+        $display("a = %d (0x%x)", a, a);
+        $display("b = %d (0x%x)", b, b);
         rst = 1;
         en = 0;
         #10
@@ -43,6 +45,7 @@ module tb;
 
     initial begin
         $readmemb("./src/bin/eq_zero_optimized.b", i_top.ctrl.imem);
+        //$readmemb("./PcpuAssembler/euclid.b", i_top.ctrl.imem);
         $readmemb("./sim/vectors/a.b", a);
         $readmemb("./sim/vectors/b.b", b);
         $readmemb("./sim/vectors/g.b", g);
